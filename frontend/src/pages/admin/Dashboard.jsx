@@ -1,6 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { useGetPurchasedCoursesQuery } from '@/features/api/purchaseApi'
-import { Sidebar } from 'lucide-react'
 import React from 'react'
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 
