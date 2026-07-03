@@ -26,11 +26,14 @@ const CourseDetail = () => {
     }
 
 
-    console.log(course.lectures[0].videoUrl)
+    
     const purchasedCourse = false;
     return (
         <div className=' space-y-5'>
-            <div className='bg-[#2D2F31] text-white'>
+            <div className=' text-white md:bg-gradient-to-r md:from-cyan-800 md:via-cyan-200 md:to-white
+        md:dark:from-cyan-950 md:dark:via-zinc-950 md:dark:to-zinc-950
+        bg-gradient-to-r from-cyan-900 via-cyan-600 to-white
+        dark:from-cyan-900 dark:via-cyan-950 dark:to-zinc-950'>
                 <div className='max-w-7xl mx-auto py-8 px-4 md:px-8 flex flex-col gap-2'>
                     <h1 className='fontbold text-2xl md:text-3xl'>{course?.courseTitle}</h1>
                     <p className='text-base md:text-lg'>Course Sub-title</p>

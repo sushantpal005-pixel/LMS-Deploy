@@ -91,8 +91,6 @@ const CourseTab = () => {
 
     useEffect(() => {
         if (isSuccess) {
-            console.log("hogya bc");
-
             toast.success(data.message || "Course update.")
         }
         if (error) {

@@ -32,7 +32,7 @@ const CreateLecture = () => {
         }
 
     }, [isSuccess, error])
-    console.log("lecture data", lectureData)
+    
     return (
         <div className='flex-1 mx-10'>
             <div className='mb-4'>

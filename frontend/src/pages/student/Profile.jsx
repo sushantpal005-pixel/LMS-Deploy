@@ -62,19 +62,19 @@ const Profile = () => {
                 </div>
                 <div>
                     <div className='mb-2'>
-                        <h1 className='font-semibold text-gray-900 dark:text-shadow-gray-100'>
+                        <h1 className='font-semibold text-gray-900 dark:text-white'>
                             Name:
                             <span className='font-normal text-gray-700 dark:text-gray-300 ml-2'>{user.name}</span>
                         </h1>
                     </div>
                     <div className='mb-2'>
-                        <h1 className='font-semibold text-gray-900 dark:text-shadow-gray-100'>
+                        <h1 className='font-semibold text-gray-900 dark:text-white'>
                             Email:
                             <span className='font-normal text-gray-700 dark:text-gray-300 ml-2'>{user.email}</span>
                         </h1>
                     </div>
                     <div className='mb-2'>
-                        <h1 className='font-semibold text-gray-900 dark:text-shadow-gray-100'>
+                        <h1 className='font-semibold text-gray-900 dark:text-white'>
                             Role:
                             <span className='font-normal text-gray-700 dark:text-gray-300 ml-2'>{user.role.toUpperCase()}</span>
                         </h1>

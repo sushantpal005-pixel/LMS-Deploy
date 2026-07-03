@@ -15,9 +15,9 @@ const BuyCourseButton = ({ courseId }) => {
 
   useEffect(()=>{
     if(isSuccess){
-      console.log(data.url)
+      
       if(data?.url){
-        console.log(data.url);
+        
         window.location.href = data.url;   //redirect to stripe checkout url
       } else{
         toast.error("Invalid response from server.")

@@ -66,7 +66,7 @@ export const createCheckoutSession = async (req, res) => {
     // Save the purchase record
     newPurchase.paymentId = session.id;
     await newPurchase.save();
-    console.log(session.url)
+    
     return res.status(200).json({
       success: true,
       url: session.url, // Return the Stripe checkout URL
@@ -93,7 +93,7 @@ export const stripeWebhook = async (req, res) => {
 
   // Handle the checkout session completed event
   if (event.type === "checkout.session.completed") {
-    console.log("🎯 Webhook Success: checkout.session.completed triggered!");
+    
 
     try {
       const session = event.data.object;
@@ -103,13 +103,13 @@ export const stripeWebhook = async (req, res) => {
       }).populate({ path: "courseId" });
 
       if (!purchase) {
-        console.log("❌ Purchase record not found in DB for ID:", session.id);
+        
         return res.status(404).json({ message: "Purchase not found" });
       }
 
       // Idempotency guard — Stripe may retry the same event
       if (purchase.status === "completed") {
-        console.log("ℹ️ Purchase already marked completed, skipping.");
+        
         return res.status(200).send();
       }
 
@@ -120,7 +120,7 @@ export const stripeWebhook = async (req, res) => {
       purchase.status = "completed";
       await purchase.save();
 
-      console.log("🔄 Database updated: Status is now COMPLETED!");
+    
 
       if (purchase.courseId && purchase.courseId.lectures.length > 0) {
         await Lecture.updateMany(
@@ -141,7 +141,7 @@ export const stripeWebhook = async (req, res) => {
         { new: true }
       );
 
-      console.log("👥 Student successfully enrolled in Course!");
+      
     } catch (error) {
       console.error("❌ Error inside webhook business logic:", error);
       return res.status(500).json({ message: "Internal Server Error" });
@@ -177,7 +177,7 @@ export const getCourseDetailWithPurchaseStatus = async (req, res) => {
 export const getAllPurchasedCourse = async (_, res) => {
   try {
     const purchasedCourse = await CoursePurchase.find({ status: "completed" }).populate("courseId")
-    console.log(purchasedCourse);
+    
     if (!purchasedCourse) {
       return res.status(404).json({
         purchasedCourse: []

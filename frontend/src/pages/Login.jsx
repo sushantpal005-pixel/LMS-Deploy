@@ -20,10 +20,17 @@ import { useLoginUserMutation, useRegisterUserMutation } from "@/features/api/au
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 
 const Login = () => {
-  const [signupInput, setSignupInput] = useState({ name: "", email: "", password: "" });
+  const [signupInput, setSignupInput] = useState({ name: "", email: "", password: "", role: "student" });
   const [loginInput, setLoginInput] = useState({ email: "", password: "" });
   const [registerUser, { data: registerData, error: registerError, isLoading: registerIsLoading, isSuccess: registerIsSuccess }] = useRegisterUserMutation()
   const [loginUser, { data: loginData, error: loginError, isLoading: loginIsLoading, isSuccess: loginIsSuccess },] = useLoginUserMutation()
@@ -43,18 +50,18 @@ const Login = () => {
 
   }
   useEffect(() => {
-    if( registerIsSuccess && registerData ){
-       toast.success(registerData.message || "signup successfull.")
+    if (registerIsSuccess && registerData) {
+      toast.success(registerData.message || "signup successfull.")
     }
-    if( registerError ){
-       toast.success(registerError?.data?.message || "signup failed.")
+    if (registerError) {
+      toast.success(registerError?.data?.message || "signup failed.")
     }
-    if( loginIsSuccess && loginData ){
-       toast.success(loginData.message || "login successfull.")
-       navigate("/")
+    if (loginIsSuccess && loginData) {
+      toast.success(loginData.message || "login successfull.")
+      navigate("/")
     }
-    if( loginError ){
-       toast.success(loginError?.data?.message || "login failed.")
+    if (loginError) {
+      toast.success(loginError?.data?.message || "login failed.")
     }
 
   }, [loginIsLoading, registerIsLoading, loginData, registerData, loginError, registerError])
@@ -110,6 +117,24 @@ const Login = () => {
                   placeholder="Eg. xyz"
                 />
               </div>
+              <div className="grid gap-2">
+                <Label htmlFor="role">Role</Label>
+                <Select
+                  value={signupInput.role}
+                  onValueChange={(value) =>
+                    setSignupInput({ ...signupInput, role: value })
+                  }
+                >
+                  <SelectTrigger id="role">
+                    <SelectValue placeholder="Select your role" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="student">Student</SelectItem>
+                    <SelectItem value="instructor">Instructor</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
             </CardContent>
             <CardFooter>
               <Button disabled={registerIsLoading} onClick={() => { handleRegistration("signup") }}>

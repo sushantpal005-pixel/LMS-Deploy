@@ -4,7 +4,7 @@ import { generateToken } from "../utils/generateToken.js";
 import { deleteMediaFromCloudinary, uploadMedia } from "../utils/cloudinary.js";
 export const register = async (req, res) => {       // register controller
     try {
-        const { name, email, password } = req.body;
+        const { name, email, password, role } = req.body;
         if (!name || !email || !password) {
             return res.status(400).json({
                 success: false,
@@ -22,7 +22,8 @@ export const register = async (req, res) => {       // register controller
         await User.create({
             name,
             email,
-            password: hashedPassword
+            password: hashedPassword,
+            role: role || "student"
         })
         return res.status(201).json({
             success: true,

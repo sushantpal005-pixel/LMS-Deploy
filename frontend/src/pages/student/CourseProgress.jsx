@@ -18,7 +18,7 @@ const CourseProgress = () => {
   const [inCompleteCourse, { data: markInCompleteData, isSuccess: inCompletedSuccess },] = useInCompleteCourseMutation();
 
   useEffect(() => {
-    console.log(markCompleteData);
+    
 
     if (completedSuccess) {
       refetch();
@@ -58,19 +58,14 @@ const CourseProgress = () => {
 
 
 
-  console.log(data);
-
 
   const handleCompleteCourse = async () => {
-    console.log("hhh")
     await completeCourse(courseId);
   };
   const handleInCompleteCourse = async () => {
     await inCompleteCourse(courseId);
   };
 
-console.log("completed:", completed);
-console.log(data.data);
 
   return (
     <div className='max-w-7xl mx-auto p-4'>

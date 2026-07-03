@@ -8,6 +8,8 @@ import courseRoute from "./routes/course.route.js"
 import mediaRoute from "./routes/media.route.js"
 import purchaseRoute from "./routes/purchaseCourse.route.js"
 import courseProgressRoute from "./routes/courseProgressRoute.route.js"
+import path from "path"
+
 
 dotenv.config({})
 
@@ -17,6 +19,9 @@ const app = express()
 
 
 const PORT = process.env.PORT || 3000
+
+const _dirname = path.resolve()
+
 
 app.use(
   "/api/v1/purchase/webhook",
@@ -38,7 +43,10 @@ app.use("/api/v1/purchase", purchaseRoute)
 app.use("/api/v1/progress", courseProgressRoute)
 
 
- 
+app.use(express.static(path.join(_dirname, "/frontend/dist")))
+app.use((_, res) => {
+    res.sendFile(path.resolve(_dirname, "frontend", "dist", "index.html"));
+})
 
 app.listen(PORT, ()=>{
     console.log(`Server listen at port ${PORT}`)

@@ -26,7 +26,7 @@ const LectureTab = () => {
     const lecture = lectureData?.lecture;
 
     useEffect(()=>{
-        console.log(lecture)
+        
         if(lecture){
             setLectureTitle(lecture.lectureTitle);
             setIsFree(lecture.isPreviewFree);
@@ -49,13 +49,13 @@ const LectureTab = () => {
                     }
                 })
                 if (res.data.success === true) {
-                    console.log(res);
+                    
                     setUploadVideoInfo({ videoUrl: res.data.data.url, publicId: res.data.data.public_id })
                     setBtnDisable(false)
                     toast.success(res.data.message)
                 }
             } catch (error) {
-                console.log(error);
+                
                 toast.error("video upload failed");
             } finally {
                 setMediaProgress(false);
