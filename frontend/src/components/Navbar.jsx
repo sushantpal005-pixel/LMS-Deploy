@@ -109,7 +109,7 @@ export default Navbar
 
 
 
-const MobileNavbar = ({user}) => {
+const MobileNavbar = ({ user }) => {
     const navigate = useNavigate()
     const [logoutUser, { data, isSuccess }] = useLogoutUserMutation()
     const logoutHandler = async () => {
@@ -147,11 +147,10 @@ const MobileNavbar = ({user}) => {
                             </nav>
                             {
                                 user?.role === "instructor" && (
-                                    <SheetFooter>
-                                        <SheetClose asChild>
-                                            <Button variant="outline" onClick={() => navigate("/admin/dashboard")}>Dashboard</Button>
-                                        </SheetClose>
-                                    </SheetFooter>
+                                    <>
+                                        <DropdownMenuSeparator />
+                                        <DropdownMenuItem><Link to="/admin/dashboard">Dashboard</Link></DropdownMenuItem>
+                                    </>
                                 )
                             }
                         </>
