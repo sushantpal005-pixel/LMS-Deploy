@@ -147,9 +147,13 @@ const MobileNavbar = ({ user }) => {
                             </nav>
                             {
                                 user?.role === "instructor" && (
-                                    <>
-                                        <DropdownMenuSeparator />
-                                        <DropdownMenuItem><Link to="/admin/dashboard">Dashboard</Link></DropdownMenuItem>
+                                    <>?
+                                        <DropdownMenu>
+                                            <DropdownMenuContent>
+                                                <DropdownMenuSeparator />
+                                                <DropdownMenuItem><Link to="/admin/dashboard">Dashboard</Link></DropdownMenuItem>
+                                            </DropdownMenuContent>
+                                        </DropdownMenu>
                                     </>
                                 )
                             }
