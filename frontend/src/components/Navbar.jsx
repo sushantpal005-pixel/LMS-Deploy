@@ -42,7 +42,7 @@ const Navbar = () => {
     const logoutHandler = async () => {
         await logoutUser()
     }
-    
+
     useEffect(() => {
         if (isSuccess) {
             toast.success(data.message || "User log out.")
@@ -109,7 +109,7 @@ export default Navbar
 
 
 
-const MobileNavbar = (user) => {
+const MobileNavbar = ({user}) => {
     const navigate = useNavigate()
     const [logoutUser, { data, isSuccess }] = useLogoutUserMutation()
     const logoutHandler = async () => {
@@ -130,29 +130,46 @@ const MobileNavbar = (user) => {
                     <Menu />
                 </Button>
             </SheetTrigger>
+
             <SheetContent className="flex flex-col">
                 <SheetHeader className="flex flex-row items-center justify-between mt-2">
                     <SheetTitle><Link to="/">E-Learning</Link></SheetTitle>
                     <DarkMode />
                 </SheetHeader>
                 <Separator className="mr-2" />
-                <nav className='flex flex-col space-y-4'>
-                    <Link to="/my-learning">My Learning</Link>
-                    <Link to="profile">Edit Profile</Link>
-                    <span onClick={logoutHandler}>Log out</span>
-                </nav>
                 {
-                    user?.role === "instrutor" && (
-                        <SheetFooter>
-                            <SheetClose asChild>
-                                <Button variant="outline" onClick={() => navigate("/admin/dashboard")}>Dashboard</Button>
-                            </SheetClose>
-                        </SheetFooter>
+                    user ? (
+                        <>
+                            <nav className='flex flex-col space-y-4'>
+                                <Link to="/my-learning">My Learning</Link>
+                                <Link to="profile">Edit Profile</Link>
+                                <span onClick={logoutHandler}>Log out</span>
+                            </nav>
+                            {
+                                user?.role === "instructor" && (
+                                    <SheetFooter>
+                                        <SheetClose asChild>
+                                            <Button variant="outline" onClick={() => navigate("/admin/dashboard")}>Dashboard</Button>
+                                        </SheetClose>
+                                    </SheetFooter>
+                                )
+                            }
+                        </>
+                    ) : (
+                        <div className='flex items-center gap-2'>
+                            <Button variant="outline" onClick={() => navigate("/login")}>Login</Button>
+                            <Button onClick={() => navigate("/login")}>Signup</Button>
+                        </div>
                     )
+
                 }
 
 
+
             </SheetContent>
+
+
+
         </Sheet>
     )
 
