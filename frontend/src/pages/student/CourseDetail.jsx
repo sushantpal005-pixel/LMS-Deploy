@@ -36,7 +36,7 @@ const CourseDetail = () => {
         dark:from-cyan-900 dark:via-cyan-950 dark:to-zinc-950'>
                 <div className='max-w-7xl mx-auto py-8 px-4 md:px-8 flex flex-col gap-2'>
                     <h1 className='fontbold text-2xl md:text-3xl'>{course?.courseTitle}</h1>
-                    <p className='text-base md:text-lg'>Course Sub-title</p>
+                    <p className='text-base md:text-lg'>{course?.subtitle}</p>
                     <p>Created By{" "} <span className='text-[#C0C4FC] underline italic'>{course?.creator.name}</span></p>
                     <div className='flex items-center gap-2 text-sm'>
                         <BadgeInfo size={16} />
